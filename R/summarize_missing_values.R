@@ -1,6 +1,6 @@
 #' Count the number of missing / NA values
 #'
-#' Center all columns with respect to the grand mean
+#' It counts the number of missing / NA values. You can pass everything() to cols in order to get all the missing value for all columns
 #'
 #' @param data dataframe
 #' @param cols vector or tidyselect syntax or helpers. column(s) that need to be centered
@@ -12,10 +12,13 @@
 #' @export
 #'
 #' @examples
+#' test_df = data.frame(col1 = c(1,2,3),col2 = c(1,NA,3),col3 = c(1,2,NA))
+#' summarize_missing_values(test_df,everything())
 #'
 summarize_missing_values = function(data, cols, group = NULL, print = F) {
   cols = ggplot2::enquo(cols)
   if (!is.null(group)) {
+    group = ggplot2::enquo(group)
     return_df = data %>%
       dplyr::group_by(!!group) %>%
       dplyr::summarize(dplyr::across(!!cols, ~ sum(is.na(.))))

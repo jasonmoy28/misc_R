@@ -1,4 +1,4 @@
-#' cor_test
+#' Correlation table
 #'
 #' This function uses the psych::corr.test function to generated the correlation. One potential problem with the current version of the function is that if the correlation between the two item is too high (rounded as 1), then that cell will become blank. This is a very rare problem, and I have not yet figure out how to solve this.
 #' @param data a dataframe
@@ -19,14 +19,14 @@ cor_test =  function(data,cols,sig_test = 'raw',digit = 3,...) {
 
   datatype = as.vector(sapply(data, class))
   if(all(datatype == 'numeric'| datatype == 'factor' | datatype == 'integer')){
-    data = data %>% dplyr::mutate(dplyr::across(tidyr::everything(),as.numeric))
+    data = data %>% dplyr::mutate(dplyr::across(!!cols,as.numeric))
   } else{
     print('Error: All columns must be dummy coded or factored. Consider using as.factor() or as.numeric()')
     return()
   }
 
   cor_test_df = data %>%
-    dplyr::mutate(dplyr::across(tidyr::everything(),as.numeric)) %>%
+    dplyr::mutate(dplyr::across(!!cols,as.numeric)) %>%
     psych::corr.test()
 
   cor_df_raw = as.data.frame(cor_test_df$r) %>%
@@ -71,7 +71,7 @@ cor_test =  function(data,cols,sig_test = 'raw',digit = 3,...) {
     }
   }
 
-  cor_df = cor_df %>% tibble::column_to_rownames()
+  cor_df = cor_df %>% dplyr::select(-rowname)
 
     # printing warning meesage, non-essential block
   coreced_name = NULL

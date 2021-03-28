@@ -9,7 +9,7 @@ center_grand_mean(data, cols)
 \arguments{
 \item{data}{dataframe}
 
-\item{cols}{vector or tidyselect syntax or helpers. column(s) that need to be centered}
+\item{cols}{vector or tidyselect syntax or helpers. column(s) that need to be centered. Recommend using where(is.numeric) to exclude changing factors.}
 }
 \value{
 return a dataframe with the columns centered (replace existing columns)
@@ -18,5 +18,6 @@ return a dataframe with the columns centered (replace existing columns)
 Center all columns with respect to the grand mean
 }
 \examples{
+center_grand_mean(iris,where(is.numeric))
 
 }

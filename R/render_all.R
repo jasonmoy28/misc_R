@@ -1,6 +1,6 @@
 #' RMarkdown Render
 #'
-#' Center all columns with respect to the grand mean
+#' It will render all RMarkdown files in the directory.
 #'
 #' @param dir directory path
 #' @param render_exist render existed pdf files or not

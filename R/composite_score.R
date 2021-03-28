@@ -1,6 +1,6 @@
 #' Composite column
 #'
-#' The function will perform a rowise aggregation which then divided by the total number of columns. It ignores rows with any NA value.
+#' The function will perform a rowise aggregation which then divided by the total number of columns. It ignores rows with any NA value (i.e, will use listwise deletion)
 #' @param data dataframe
 #' @param cols vector or tidyselect syntax or helpers. column(s) that need to be composite
 #' @param composite_col_name character. default as 'composited_column'. the column name of the composite column
@@ -10,6 +10,8 @@
 #' @export
 #'
 #' @examples
+#' test_df = data.frame(col1 = c(1,2,3,4),col2 = c(1,2,3,4), col3 = c(1,2,NA,4))
+#' composite_score(test_df, everything()) # as you can see row 3 was dropped
 #'
 composite_score = function(data, cols, composite_col_name = 'composited_column'){
   cols = ggplot2::enquo(cols)

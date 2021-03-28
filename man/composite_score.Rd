@@ -17,8 +17,10 @@ composite_score(data, cols, composite_col_name = "composited_column")
 return a dataframe with a new column with the composite score
 }
 \description{
-The function will perform a rowise aggregation which then divided by the total number of columns. It ignores rows with any NA value.
+The function will perform a rowise aggregation which then divided by the total number of columns. It ignores rows with any NA value (i.e, will use listwise deletion)
 }
 \examples{
+test_df = data.frame(col1 = c(1,2,3,4),col2 = c(1,2,3,4), col3 = c(1,2,NA,4))
+composite_score(test_df, everything()) # as you can see row 3 was dropped
 
 }

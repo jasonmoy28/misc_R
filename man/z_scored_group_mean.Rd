@@ -17,8 +17,10 @@ z_scored_group_mean(data, cols, group)
 return a dataframe with the columns z-scored (replace existing columns)
 }
 \description{
-Z-scored that uses the group mean in the z-score formula
+Z-scored that uses the group mean in the z-score formula. Currently, it will drop the group column (Will try to fix this in the next version)
 }
 \examples{
+z_scored_group_mean(iris, where(is.numeric), group = Species)
+z_scored_group_mean(iris, 1:4, group = Species)
 
 }

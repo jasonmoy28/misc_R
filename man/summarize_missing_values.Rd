@@ -19,8 +19,10 @@ summarize_missing_values(data, cols, group = NULL, print = F)
 return a dataframe with the number of NA values
 }
 \description{
-Center all columns with respect to the grand mean
+It counts the number of missing / NA values. You can pass everything() to cols in order to get all the missing value for all columns
 }
 \examples{
+test_df = data.frame(col1 = c(1,2,3),col2 = c(1,NA,3),col3 = c(1,2,NA))
+summarize_missing_values(test_df,everything())
 
 }

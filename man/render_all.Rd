@@ -15,7 +15,7 @@ render_all(dir, render_exist = T)
 
 }
 \description{
-Center all columns with respect to the grand mean
+It will render all RMarkdown files in the directory.
 }
 \examples{
 

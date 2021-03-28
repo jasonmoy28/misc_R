@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#' z_scored_grand_mean(iris,where(is.numeric))
 #'
 z_scored_grand_mean = function(data, cols) {
   cols = ggplot2::enquo(cols)

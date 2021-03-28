@@ -2,7 +2,7 @@
 % Please edit documentation in R/recode_item.R
 \name{recode_item}
 \alias{recode_item}
-\title{Recode items}
+\title{Recode items of a dataframe (support reverse code)}
 \usage{
 recode_item(
   data,
@@ -30,7 +30,7 @@ recode_item(
 
 }
 \description{
-Recode items
+Recode items of a dataframe (support reverse code)
 }
 \examples{
 test_df = data.frame(test_col = 1:5)

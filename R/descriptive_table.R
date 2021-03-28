@@ -1,9 +1,9 @@
-#' descriptive_table
+#' Mean, SD, and Correlation table
 #'
 #' This function uses the psych::corr.test function to generated the correlation. One potential problem with the current version of the function is that if the correlation between the two item is too high (rounded as 1), then that cell will become blank. This is a very rare problem, and I have not yet figure out how to solve this.
 #'
 #' @param data a dataframe
-#' @param cols vector or quos(). column(s) that need to be recoded
+#' @param cols vector or tidyselect syntax or helpers. column(s) need to be included in the table.
 #' @param cor_sig_test adjusted or raw. Default as adjusted. See psych::corr.test to learn more.
 #' @param cor_digit number of digit for correlation table
 #' @param mean_sd_digit number of digit for mean and sd tables
@@ -13,7 +13,8 @@
 #' @export
 #'
 #' @examples
-#' descriptive_table(iris,cols = tidyr::everything())
+#' descriptive_table(iris,cols = tidyr::everything()) # all columns
+#' descriptive_table(iris,cols = where(is.numeric)) # all numeric columns
 
 descriptive_table =  function(data,cols,cor_sig_test = 'raw',cor_digit = 3,mean_sd_digit = 3, filepath = NULL) {
   cols = ggplot2::enquo(cols)
@@ -43,7 +44,7 @@ descriptive_table =  function(data,cols,cor_sig_test = 'raw',cor_digit = 3,mean_
     tibble::column_to_rownames('rowname')
 
   if (!is.null(filepath)) {
-    write.csv(x = return_df, file = filepath)
+    utils::write.csv(x = return_df, file = filepath)
   }
   return(return_df)
 }

@@ -18,5 +18,6 @@ retrun a dataframe with the columns z-scored (replace existing columns)
 Z-scored that uses the grand mean in the z-score formula
 }
 \examples{
+z_scored_grand_mean(iris,where(is.numeric))
 
 }

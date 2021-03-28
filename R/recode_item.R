@@ -1,4 +1,4 @@
-#' Recode items
+#' Recode items of a dataframe (support reverse code)
 #'
 #' @param data a dataframe
 #' @param cols vector or tidyselect syntax or helpers. column(s) that need to be recoded
@@ -21,7 +21,7 @@ recode_item <- function(data,
                         reverse_code = FALSE,
                         retain_code = "all") {
   cols = ggplot2::enquo(cols)
-  data = data %>% dplyr::mutate(dplyr::across(tidyr::everything(),as.numeric))
+  data = data %>% dplyr::mutate(dplyr::across(!!cols,as.numeric))
 
   if (reverse_code == T) {
     if (all(retain_code == 'all')) {

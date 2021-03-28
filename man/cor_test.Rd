@@ -2,7 +2,7 @@
 % Please edit documentation in R/cor_test.R
 \name{cor_test}
 \alias{cor_test}
-\title{cor_test}
+\title{Correlation table}
 \usage{
 cor_test(data, cols, sig_test = "raw", digit = 3, ...)
 }
